@@ -5,11 +5,13 @@ import { addReminder, deleteReminder } from '../actions';
 
 class App extends Component {
     state = {
-        text: ''
+        text: '',
+        dueDate: ''
     }
 
     addReminder = () => {
-        this.props.addReminder(this.state.text);
+        console.log('this.sate.dueDate', this.state.dueDate);
+        this.props.addReminder(this.state.text, this.state.dueDate);
     }
 
     deleteReminder = (id) => {
@@ -56,7 +58,12 @@ class App extends Component {
                             className="form-control"
                             placeholder="I have to..."
                             onChange={event => this.setState({text: event.target.value})}
-                        />                        
+                        />
+                        <input
+                            type="datetime-local"
+                            className="form-control"
+                            onChange={event => this.setState({dueDate: event.target.value})}
+                        />
                     </div>
                     <button
                         type="button"
